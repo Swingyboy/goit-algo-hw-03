@@ -1,3 +1,4 @@
+import argparse
 import logging
 import pathlib
 from typing import List, Union
@@ -52,5 +53,8 @@ def copy_dir_content(src_dir: Union[str, pathlib.Path], dest_dir: Union[str, pat
 
 
 if __name__ == "__main__":
-    path = "/home/serhii/work"
-    copy_dir_content(path)
+    argparse = argparse.ArgumentParser()
+    argparse.add_argument("-s", "--source", help="Source directory", required=True)
+    argparse.add_argument("-d", "--dest", help="Destination directory", default="dist")
+    args = argparse.parse_args()
+    copy_dir_content(args.source, args.dest)
